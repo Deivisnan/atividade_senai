@@ -1,0 +1,200 @@
+Algoritmo "VErsão busca Cadastro de Usuários "
+// Disciplina   : [Linguagem e Lógica de Programação]
+// Professor   :
+//ALuno Deivisnan Bispo
+
+var
+    numeroMenu, indice, numero, quantidade, escolhido, Q, acumulador: inteiro
+    funcioNum, contador, nota: inteiro
+    loop, idadeUsuario, resultado, repostaNota: inteiro
+    usuario,Nomebusca,  resultadoBusca: caractere
+    funcionario: caractere
+    usuarios: vetor[1..25] de caractere // vetor para armazenar os usuários cadastrados
+    idade: vetor[1..25] de inteiro
+
+funcao buscarNome(nomeB: caractere): inteiro
+var
+    indice: inteiro
+    achou: logico
+inicio
+    achou <- falso
+    indice <- 1
+
+    enquanto (indice <= 25) e (achou = falso) faca
+        se usuarios[indice] = nomeB entao
+            achou <- verdadeiro
+        senao
+            indice <- indice + 1
+        fimse
+    fimenquanto
+
+    se achou entao
+        retorne indice // Retorna a posição do nome no vetor
+    senao
+        retorne -1 // Retorna -1 se o nome não for encontrado
+    fimse
+fimfuncao
+
+Inicio
+    acumulador <- 0
+    escreval("Olá, este é o ambiente de Cadastro TESTE_01")
+    escreval("Qual funcionário está realizando o cadastro do cliente? Digite seu nome:")
+    leia(funcionario)
+    escreval("Digite o número exato de cadastros:")
+    leia(numero)
+
+    indice <- 1
+    enquanto indice <= numero faca
+        escreval("Cadastre um novo usuário: ")
+        leia(usuario)
+
+        usuarios[indice] <- usuario
+        acumulador <- acumulador + 1
+        escreval(" ")
+
+        escreva("Digite a idade: ")
+        leia(idadeUsuario)
+
+        idade[indice] <- idadeUsuario
+
+        escreval("O usuário(a) " + usuario + " foi cadastrado com sucesso!!")
+        indice <- indice + 1
+
+        escreval(" ")
+
+    fimenquanto
+
+    se acumulador >= numero entao
+        escreval("Todos usuários cadastrados")
+        escreval("Deseja acessar o menu novamente ", funcionario, "? Digite 1 para acessar o menu ou 0 para sair:")
+        leia(escolhido)
+        se escolhido = 1 entao
+            escreval("Digite 1 para cadastrar um novo usuário")
+            escreval("Digite 2 para listar todos os usuários cadastrados")
+            escreval("Digite 4 para buscar um nome")
+            escreval("Digite 0 para sair")
+            leia(numeroMenu)
+
+            se numeroMenu = 2 então
+                escreval("Lista de todos os usuários cadastrados:")
+                para indice <- 1 ate acumulador faca
+                    escreval(usuarios[indice], "( Idade:", idade[indice], ")" )
+                fimpara
+            fimse
+
+
+
+           se numeroMenu = 4 entao
+
+                      escreva("Entre com o nome para buscar: ")
+                      leia(Nomebusca)
+                      resultado <- buscarNome(Nomebusca)
+
+                      se resultado <> -1 entao
+                          escreval("O nome ", Nomebusca, " foi encontrado na posição ", resultado)
+                      senao
+                          //escreval("O nome ", Nomebusca, " não foi encontrado.")
+                          escreval("-1")
+                      fimse
+
+
+            se numeroMenu = 1 entao
+                escreval("Digite a quantidade de usuários que deseja cadastrar:")
+                leia(quantidade)
+                contador <- 1
+                enquanto contador <= quantidade faca
+                    contador <- contador + 1
+                    escreval("Cadastre um novo usuário:")
+                    leia(usuario)
+                    escreval(" ")
+                    escreva("Digite a idade: ")
+                    leia(idadeUsuario)
+                    idade[indice] <- idadeUsuario
+                    usuarios[indice] <- usuario
+                    acumulador <- acumulador + 1
+                    escreval("O usuário(a) " + usuario + " foi cadastrado com sucesso!!")
+                    indice <- indice + 1
+                fimenquanto
+
+                escreval("Funcionário: ", funcionario, ", deseja acessar o menu novamente? Digite 1 para sim ou 0 para sair ")
+                leia(funcioNum)
+
+                loop <- 1
+                enquanto loop <> 0 faca
+                    se funcioNum = 1 entao
+                        escreval("Digite 1 para cadastrar um novo usuário")
+                        escreval("Digite 2 para listar todos os usuários cadastrados")
+                        escreval("Digite 0 para sair")
+                        leia(numeroMenu)
+
+                        se numeroMenu = 2 então
+                            escreval("Lista de todos os usuários cadastrados:")
+                            para indice <- 1 ate acumulador faca
+                                escreval(usuarios[indice], "( Idade:", idade[indice], ")" )
+                            fimpara
+                        fimse
+
+                        se numeroMenu = 1 entao
+                            escreval("Digite a quantidade de usuários que deseja cadastrar:")
+                            leia(quantidade)
+                            Q <- 1
+                            enquanto Q <= quantidade faca
+                                Q <- Q + 1
+                                escreval("Cadastre um novo usuário:")
+                                leia(usuario)
+                                usuarios[indice] <- usuario
+                                escreval(" ")
+                                escreva("Digite a idade: ")
+                                leia (idadeUsuario)
+                                idade[indice] <- idadeUsuario
+                                acumulador <- acumulador + 1
+                                escreval("O usuário(a) " + usuario + " foi cadastrado com sucesso!!")
+                                indice <- indice + 1
+                            fimenquanto
+                        fimse
+
+                        se numeroMenu = 0 então
+                            interrompa
+                        fimse
+                    fimse
+                fimenquanto
+            fimse
+        fimse
+    fimse
+    escreval("Olá ", funcionario," obrigado por usar o programa")
+    escreval("Poderia avaliar o programa ?")
+    escreval("")
+    escreval("1 para sim")
+    escreval("")
+    escreval("2 para não")
+    leia (repostaNota)
+
+    se repostaNota = 1 entao
+        escreval("Ótimo! Dê uma nota de 0 a 10:")
+        leia(nota)
+        se nota <= 3 entao
+            escreval(" Nossa!! :( Fico triste por receber:", nota," ,Mas irei melhorar, obrigado")
+        fimse
+        se nota = 5 entao
+           escreval("Você me deu a nota ", nota,". Uma boa nota para que eu possa melhorar.")
+        fimse
+
+
+
+              se nota = 6 entao
+
+                      escreval(" voce me deu a nota ", nota," Uma boa nota para que eu possa melhorar")
+                     //tive que repitir a linha estava dando erro com o e (and)
+                       fimse
+
+
+                   se nota > 6 entao
+
+                      escreval(" Que fantastico!!! Que voce gostou do programa essa nota", nota, " Só me mostra que posso ir mais longe e estou no caminho certo. Obrigado: ", funcionario," :)")
+
+                   fimse
+
+             senao
+             escreval("entendi, sem avaliações, obrigado!")
+
+             fimse
