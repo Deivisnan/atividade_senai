@@ -1,6 +1,6 @@
 Algoritmo "VErsão busca Cadastro de Usuários "
 // Disciplina   : [Linguagem e Lógica de Programação]
-// Professor   :
+// Professor   :  marcio oliveira
 //ALuno Deivisnan Bispo
 
 var
@@ -194,7 +194,12 @@ Inicio
 
                    fimse
 
-             senao
-             escreval("entendi, sem avaliações, obrigado!")
+     senao
+        escreval("entendi, sem avaliações, obrigado!")
 
-             fimse
+     fimse
+     
+fimse
+
+   fimalgoritmo
+   
